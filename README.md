@@ -71,7 +71,7 @@ public class App extends Application{
     }
 }
 ```
-三.[宿主App](https://github.com/AndWong/RePluginHostForAD)调用[插件广告](https://github.com/AndWong/RePluginForAD)
+三.[宿主App](https://github.com/AndWong/RePluginHostForAD/tree/master/app)调用[插件广告](https://github.com/AndWong/RePluginHostForAD/tree/master/pluginApp)
 1.编译插件广告,将生成的xx.apk包重命名xx.jar
    将 xx.jar放到宿主App的 assets/plugins 目录下 , Replugin将会自动获取该内置插件
 
@@ -102,6 +102,16 @@ public class App extends Application{
         startActivity(intent);
         finish();
     }
+```
+(4)宿主的清单文件中添加必要配置,否则广告无反应
+```
+  <!-- 广点通广告 -->
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false" />
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
 ```
 注意 : 尽量使宿主和插件的包名一致,已避免广告无收益
 
@@ -302,5 +312,7 @@ public class LoadCallBackProx implements InvocationHandler {
     }
 ```
 四.最后,第一次写文章,欢迎点评
-宿主App : https://github.com/AndWong/RePluginHostForAD
-插件App : https://github.com/AndWong/RePluginForAD
+
+宿主App : https://github.com/AndWong/RePluginHostForAD/tree/master/app
+
+插件App : https://github.com/AndWong/RePluginHostForAD/tree/master/pluginApp
