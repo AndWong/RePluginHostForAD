@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'replugin-plugin-gradle'  //运行插件App时请将该注释去除
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.wifi.robot"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            assets.srcDirs = ['src/main/assets']
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.qihoo360.replugin:replugin-plugin-lib:2.1.7'
+    compile files('libs/GDTUnionSDK.4.9.545.min.jar')
+    compile files('libs/ljk_corg.gams.dask_1.9.jar')
+}
